@@ -23,6 +23,7 @@ _C = CN()
 _C.MODEL = CN()
 _C.MODEL.RPN_ONLY = False
 _C.MODEL.MASK_ON = False
+_C.MODEL.OASIS_ON = False
 _C.MODEL.RETINANET_ON = False
 _C.MODEL.KEYPOINT_ON = False
 _C.MODEL.DEVICE = "cuda"
@@ -286,6 +287,25 @@ _C.MODEL.RESNETS.STAGE_WITH_DCN = (False, False, False, False)
 _C.MODEL.RESNETS.WITH_MODULATED_DCN = False
 _C.MODEL.RESNETS.DEFORMABLE_GROUPS = 1
 
+
+# ---------------------------------------------------------------------------- #
+# OASIS Options
+# ---------------------------------------------------------------------------- #
+_C.MODEL.OASIS = CN()
+_C.MODEL.OASIS.NUM_CLASSES = 81  # the number of classes including background
+_C.MODEL.OASIS.FPN_STRIDES = [8, 16, 32, 64, 128]
+_C.MODEL.OASIS.PRIOR_PROB = 0.01
+_C.MODEL.OASIS.INFERENCE_TH = 0.05
+_C.MODEL.OASIS.NMS_TH = 0.6
+_C.MODEL.OASIS.PRE_NMS_TOP_N = 1000
+
+# Focal loss parameter: alpha
+_C.MODEL.OASIS.LOSS_ALPHA = 0.25
+# Focal loss parameter: gamma
+_C.MODEL.OASIS.LOSS_GAMMA = 2.0
+
+# the number of convolutions used in the semantic and instance tower
+_C.MODEL.OASIS.NUM_CONVS = 4
 
 # ---------------------------------------------------------------------------- #
 # RetinaNet Options (Follow the Detectron version)
